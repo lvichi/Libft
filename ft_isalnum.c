@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvichi <lvichi@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/03 15:31:57 by lvichi            #+#    #+#             */
-/*   Updated: 2023/10/03 18:49:20 by lvichi           ###   ########.fr       */
+/*   Created: 2023/10/03 18:39:27 by lvichi            #+#    #+#             */
+/*   Updated: 2023/10/03 18:48:19 by lvichi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "libft.h"
-
-int	main(void)
+int	ft_isalnum(int c)
 {
-	char	c;
-
-	c = '\n';
-	printf("Char : %c\n", c);
-	printf("ft_isalpha : %d\n", ft_isalpha(c));
-	printf("ft_isdigit : %d\n", ft_isdigit(c));
-	printf("ft_isalnum : %d\n", ft_isalnum(c));
+	if ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+		return (1);
 	return (0);
 }
