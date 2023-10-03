@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvichi <lvichi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lvichi <lvichi@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 15:31:57 by lvichi            #+#    #+#             */
-/*   Updated: 2023/10/03 17:33:03 by lvichi           ###   ########.fr       */
+/*   Updated: 2023/10/03 18:34:19 by lvichi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	main(void)
 {
 	char	c;
 
-	c = 'F';
+	c = '2';
 	printf("%d\n", ft_isalpha(c));
+	printf("%d\n", ft_isdigit(c));
 	return (0);
 }
