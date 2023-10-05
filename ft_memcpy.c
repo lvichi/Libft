@@ -6,7 +6,7 @@
 /*   By: lvichi <lvichi@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:49:40 by lvichi            #+#    #+#             */
-/*   Updated: 2023/10/05 15:02:29 by lvichi           ###   ########.fr       */
+/*   Updated: 2023/10/05 21:47:37 by lvichi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
+	if (!dest && !src)
+		return (0);
 	while (n)
 	{
 		n--;
