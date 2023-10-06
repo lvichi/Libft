@@ -6,7 +6,7 @@
 /*   By: lvichi <lvichi@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:19:53 by lvichi            #+#    #+#             */
-/*   Updated: 2023/10/06 16:38:23 by lvichi           ###   ########.fr       */
+/*   Updated: 2023/10/06 16:54:26 by lvichi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 
 /*#include <stdio.h>
 #include <bsd/string.h>
+
+//compile : cc -Wall -Wextra -Werror ft_strlcat.c ft_strlen.c -lbsd
 
 int	main(void)
 {
