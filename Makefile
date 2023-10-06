@@ -6,7 +6,7 @@
 #    By: lvichi <lvichi@student.42porto.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/05 21:17:31 by lvichi            #+#    #+#              #
-#    Updated: 2023/10/05 21:24:31 by lvichi           ###   ########.fr        #
+#    Updated: 2023/10/06 20:17:07 by lvichi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,16 +16,16 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rc
 RM = rm -fr
-FILES = $(wildcard *.c)
-OBJS = $(FILES:.c=.o)
+FILES = *.c
+OBJS = *.o
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $*.c -o $*.o
+$(OBJS): $(FILES)
+	$(CC) $(CFLAGS) -c $*.c 
 
 clean:
 	$(RM) $(OBJS) 
