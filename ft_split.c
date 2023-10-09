@@ -6,7 +6,7 @@
 /*   By: lvichi <lvichi@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 19:28:20 by lvichi            #+#    #+#             */
-/*   Updated: 2023/10/08 17:39:32 by lvichi           ###   ########.fr       */
+/*   Updated: 2023/10/09 17:31:40 by lvichi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ size_t	ft_count_words(char const *s, char c)
 	return (words);
 }
 
-size_t	*ft_get_size(char const *trim_s, size_t w_count, char c)
+size_t	*ft_get_size(char const *s, size_t w_count, char c)
 {
 	size_t	i;
 	size_t	word_flag;
@@ -50,14 +50,14 @@ size_t	*ft_get_size(char const *trim_s, size_t w_count, char c)
 	w_size = (size_t *)malloc(sizeof(size_t) * w_count);
 	while (w_count--)
 		w_size[w_count] = 0;
-	while (trim_s[i])
+	while (s[i])
 	{
-		if (trim_s[i] != c)
+		if (s[i] != c)
 		{
 			word_flag = 1;
 			w_size[words]++;
 		}
-		if (trim_s[i++] == c && word_flag)
+		if (s[i++] == c && word_flag)
 		{
 			words++;
 			word_flag = 0;
@@ -66,7 +66,7 @@ size_t	*ft_get_size(char const *trim_s, size_t w_count, char c)
 	return (w_size);
 }
 
-char	*ft_get_word(char const *trim_s, size_t index, size_t *w_size, char c)
+char	*ft_get_word(char const *s, size_t index, size_t *w_size, char c)
 {
 	char	*word;
 	size_t	word_flag;
@@ -79,13 +79,13 @@ char	*ft_get_word(char const *trim_s, size_t index, size_t *w_size, char c)
 	t = 0;
 	words = 0;
 	word = (char *)malloc(sizeof(char) * (w_size[index] + 1));
-	while (trim_s[i])
+	while (s[i])
 	{
-		if (trim_s[i] != c)
+		if (s[i] != c)
 			word_flag = 1;
-		if (trim_s[i] != c && words == index)
-			word[t++] = trim_s[i];
-		if (trim_s[i++] == c && word_flag)
+		if (s[i] != c && words == index)
+			word[t++] = s[i];
+		if (s[i++] == c && word_flag)
 		{
 			words++;
 			word_flag = 0;
@@ -102,7 +102,6 @@ char	**ft_split(char const *s, char c)
 	size_t	i;
 	size_t	*w_size;
 
-	i = 0;
 	w_count = ft_count_words(s, c);
 	words = (char **)malloc(sizeof(char *) * (w_count + 1));
 	if (!words)
@@ -110,6 +109,7 @@ char	**ft_split(char const *s, char c)
 	w_size = ft_get_size(s, w_count, c); 
 	if (!w_size)
 		return (NULL);
+	i = 0;
 	while (i < w_count)
 	{
 		words[i] = ft_get_word(s, i, w_size, c);
@@ -126,7 +126,7 @@ char	**ft_split(char const *s, char c)
 
 int	main(void)
 {
-	char	*s = "                  olol";
+	char	*s = "                  olol  haw    jota";
 	char	c = ' ';
 	char	**words;
 	size_t	i;
