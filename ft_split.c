@@ -6,7 +6,7 @@
 /*   By: lvichi <lvichi@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 19:28:20 by lvichi            #+#    #+#             */
-/*   Updated: 2023/10/10 14:50:10 by lvichi           ###   ########.fr       */
+/*   Updated: 2023/10/10 21:14:43 by lvichi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,24 @@ size_t	ft_count_words(char const *s, char c)
 	return (words);
 }
 
-size_t	*ft_get_size(char const *s, size_t w_count, char c)
+int	ft_get_size(char const *s, char c, int index)
 {
 	size_t	i;
 	size_t	word_flag;
-	size_t	words;
-	size_t	*w_size;
+	int		words;
+	int		size;
 
 	words = 0;
 	i = 0;
 	word_flag = 0;
-	w_size = (size_t *)malloc(sizeof(size_t) * w_count);
-	while (w_count--)
-		w_size[w_count] = 0;
+	size = 0;
 	while (s[i])
 	{
 		if (s[i] != c)
 		{
 			word_flag = 1;
-			w_size[words]++;
+			if (words == index)
+				size++;
 		}
 		if (s[i++] == c && word_flag)
 		{
@@ -63,12 +62,11 @@ size_t	*ft_get_size(char const *s, size_t w_count, char c)
 			word_flag = 0;
 		}
 	}
-	return (w_size);
+	return (size);
 }
 
-char	*ft_get_word(char const *s, size_t index, size_t *w_size, char c)
+char	*ft_get_word(char const *s, size_t index, char *word, char c)
 {
-	char	*word;
 	size_t	word_flag;
 	size_t	i;
 	size_t	t;
@@ -78,7 +76,6 @@ char	*ft_get_word(char const *s, size_t index, size_t *w_size, char c)
 	i = 0;
 	t = 0;
 	words = 0;
-	word = (char *)malloc(sizeof(char) * (w_size[index] + 1));
 	while (s[i])
 	{
 		if (s[i] != c)
@@ -95,30 +92,37 @@ char	*ft_get_word(char const *s, size_t index, size_t *w_size, char c)
 	return (word);
 }
 
+void	ft_free(int i, char **words)
+{
+	while (i > 0)
+		free(words[--i]);
+	free(words);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**words;
-	size_t	w_count;
-	size_t	i;
-	size_t	*w_size;
+	int		w_count;
+	int		i;
 
 	w_count = ft_count_words(s, c);
 	words = (char **)malloc(sizeof(char *) * (w_count + 1));
 	if (!words)
 		return (NULL);
-	w_size = ft_get_size(s, w_count, c); 
-	if (!w_size)
-		return (NULL);
 	i = 0;
 	while (i < w_count)
 	{
-		words[i] = ft_get_word(s, i, w_size, c);
+		words[i] = (char *)malloc(sizeof(char) * (ft_get_size(s, c, i) + 1));
 		if (!words[i])
+		{
+			ft_free(i, words);
 			return (NULL);
+		}
+		words[i][0] = 0;
+		words[i] = ft_get_word(s, i, words[i], c);
 		i++;
 	}
 	words[i] = 0;
-	free(w_size);
 	return (words);
 }
 
@@ -126,13 +130,14 @@ char	**ft_split(char const *s, char c)
 
 int	main(void)
 {
-	char	*s = "                  olol  haw    jota";
+	char	*s = "hello!";
 	char	c = ' ';
 	char	**words;
 	size_t	i;
 
 	i = 0;
 	words = ft_split(s, c);
+	printf("\n");
 	while (words[i])
 	{
 		printf("word[%zu]: %s\n", i, words[i]);
