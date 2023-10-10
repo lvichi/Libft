@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.bkp                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvichi <lvichi@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 17:44:17 by lvichi            #+#    #+#             */
-/*   Updated: 2023/10/09 17:33:09 by lvichi           ###   ########.fr       */
+/*   Updated: 2023/10/10 14:38:06 by lvichi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h> //delete
 
 int	ft_negative(long *i)
 {
@@ -41,31 +40,54 @@ int	ft_size(long i)
 	return (size);
 }
 
-char	*ft_itoa(int i)
+int	ft_pow(int n, int p)
 {
-	//char	*n;
+	int	n_original;
+
+	n_original = n;
+	if (p < 0)
+		return (1);
+	while (p--)
+	{
+		n = n * n_original;
+	}
+	return (n);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*res;
 	long	number;
 	int		negative;
 	int		size;
+	int		i;
 
-	number = i;
-	negative = ft_negative(&number);
+	number = n;
 	size = ft_size(number);
-
-	printf("number: %ld\n", number);
-	printf("negative: %d\n", negative);
-	printf("size: %d\n", size);
-	return(NULL);
+	negative = ft_negative(&number);
+	res = (char *)malloc(sizeof(char) * (size - negative + 1));
+	if (!res)
+		return (0);
+	i = 0;
+	if (negative)
+		res[i++] = '-';
+	while (size--)
+	{
+		res[i++] = number / ft_pow(10, size - 1) + '0';
+		number = number - (res[i - 1] - '0') * ft_pow(10, size - 1);
+	}
+	res[i] = 0;
+	return (res);
 }
 
 /*#include <stdio.h>
 
 int	main(void)
 {
-	int		i = 2147483640;
-	//char	*n;
+	int		i = 2147483647;
+	char	*n;
 	
-	ft_itoa(i);
-	//printf("%s\n", n);
-	//free (n);
+	n = ft_itoa(i);
+	printf("%s\n", n);
+	free (n);
 }*/
