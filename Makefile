@@ -25,7 +25,7 @@ $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
 
 $(OBJS): $(FILES)
-	$(CC) $(CFLAGS) -c $*.c 
+	$(CC) $(CFLAGS) -c $(FILES)
 
 clean:
 	$(RM) $(OBJS) 
