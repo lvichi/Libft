@@ -1,46 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvichi <lvichi@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 22:35:08 by lvichi            #+#    #+#             */
-/*   Updated: 2023/10/11 17:14:47 by lvichi           ###   ########.fr       */
+/*   Created: 2023/10/11 16:52:10 by lvichi            #+#    #+#             */
+/*   Updated: 2023/10/11 17:19:45 by lvichi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	void	*ret;
+	unsigned int	i;
+	char			*str;
 
-	size = nmemb * size;
-	ret = malloc(size);
-	if (!ret)
+	str = (char *)ft_calloc(ft_strlen(s) + 1, sizeof(char));
+	if (!str)
 		return (NULL);
-	while (size)
-		((char *)ret)[--size] = 0;
-	return (ret);
+	i = 0;
+	while (s[i])
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	return (str);
 }
 
 /*#include <stdio.h>
 
+static char	ft_sum(unsigned int i, char c)
+{
+	return (c + i);
+}
+
 int	main(void)
 {
-	size_t	nmemb;
-	size_t	size;
-	void	*ret1;
-	void	*ret2;
+	char	s[30] = "123456";
+	char	*ret;
 
-
-	nmemb = 10000000;
-	size = 10000000;
-	ret1 = ft_calloc(nmemb, size);
-	ret2 = calloc(nmemb, size);
-	printf("ft_calloc: %s\n", (char *)ret1);
-	printf("calloc: %s\n", (char *)ret2);
-	free(ret1);
-	free(ret2);
+	ret = ft_strmapi(s, &ft_sum);
+	printf("%s\n", ret);
+	free(ret);
 }*/
