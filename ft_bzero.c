@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lvichi <lvichi@student.42porto.com>        +#+  +:+       +#+        */
+/*   By: skinners77 <lvichi@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 13:43:43 by lvichi            #+#    #+#             */
-/*   Updated: 2023/10/05 14:18:26 by lvichi           ###   ########.fr       */
+/*   Updated: 2023/10/11 14:56:57 by skinners77       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	ft_bzero(void *s, size_t n)
 {
 	while (n)
-		((char *)s)[--n] = '\0'; 
+		((char *)s)[--n] = '\0';
 }
