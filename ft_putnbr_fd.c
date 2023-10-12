@@ -6,7 +6,7 @@
 /*   By: lvichi <lvichi@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 18:13:50 by lvichi            #+#    #+#             */
-/*   Updated: 2023/10/11 18:46:57 by lvichi           ###   ########.fr       */
+/*   Updated: 2023/10/12 22:56:36 by lvichi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_putnbr_fd(int n, int fd)
 
 /*int	main(void)
 {
-	int	n = -4528;
+	int	n = -2147483648;
 	int	fd = 1;
 
 	ft_putnbr_fd(n, fd);
