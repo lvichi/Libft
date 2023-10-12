@@ -1,46 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lvichi <lvichi@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 23:06:40 by lvichi            #+#    #+#             */
-/*   Updated: 2023/10/12 21:45:08 by lvichi           ###   ########.fr       */
+/*   Created: 2023/10/12 22:04:54 by lvichi            #+#    #+#             */
+/*   Updated: 2023/10/12 22:48:34 by lvichi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	*str;
-	int		i;
+	t_list	*new_lst;
+	t_list	*temp;
 
-	i = 0;
-	str = (char *)malloc(ft_strlen(s) + 1);
-	if (!str)
-		return (NULL);
-	while (s[i])
+	new_lst = 0;
+	while (lst)
 	{
-		str[i] = s[i];
-		i++;
+		temp = ft_lstnew(f(lst->content));
+		if (temp == NULL)
+		{
+			ft_lstclear(&new_lst, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new_lst, temp);
+		lst = lst->next;
 	}
-	str[i] = '\0';
-	return (str);
+	return (new_lst);
 }
-
-/*#include <stdio.h>
-#include <string.h>
-
-int	main(void)
-{
-	char	s[30] = "Lucy in the sky";
-	char	*str;
-	char	*str2;
-
-	str = ft_strdup(s);
-	str2 = strdup(s);
-	printf("ft_strdup: %s\n", str);
-	printf("strdup: %s\n", str2);
-}*/
