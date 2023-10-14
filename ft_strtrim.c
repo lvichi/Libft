@@ -6,13 +6,13 @@
 /*   By: lvichi <lvichi@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 15:11:28 by lvichi            #+#    #+#             */
-/*   Updated: 2023/10/10 17:08:58 by lvichi           ###   ########.fr       */
+/*   Updated: 2023/10/14 15:37:09 by lvichi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_begin(char const *s1, char const *set)
+static int	ft_begin(char const *s1, char const *set)
 {
 	int	i;
 	int	t;
@@ -32,7 +32,7 @@ int	ft_begin(char const *s1, char const *set)
 	return (i);
 }
 
-int	ft_end(char const *s1, char const *set)
+static int	ft_end(char const *s1, char const *set)
 {
 	int	i;
 	int	t;
@@ -52,7 +52,7 @@ int	ft_end(char const *s1, char const *set)
 	return (i + 1);
 }
 
-void	ft_fill(char const *s1, char *str, int begin, int end)
+static void	ft_fill(char const *s1, char *str, int begin, int end)
 {
 	int	i;
 

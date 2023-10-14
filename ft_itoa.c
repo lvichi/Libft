@@ -6,13 +6,13 @@
 /*   By: lvichi <lvichi@student.42porto.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 17:44:17 by lvichi            #+#    #+#             */
-/*   Updated: 2023/10/10 14:38:06 by lvichi           ###   ########.fr       */
+/*   Updated: 2023/10/14 15:35:46 by lvichi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_negative(long *i)
+static int	ft_negative(long *i)
 {
 	int	negative;
 
@@ -25,7 +25,7 @@ int	ft_negative(long *i)
 	return (negative);
 }
 
-int	ft_size(long i)
+static int	ft_size(long i)
 {
 	int	size;
 
@@ -40,7 +40,7 @@ int	ft_size(long i)
 	return (size);
 }
 
-int	ft_pow(int n, int p)
+static int	ft_pow(int n, int p)
 {
 	int	n_original;
 
